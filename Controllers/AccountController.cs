@@ -9,12 +9,16 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using FilActualite.Models;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace FilActualite.Controllers
 {
+
     [Authorize]
     public class AccountController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -75,7 +79,7 @@ namespace FilActualite.Controllers
 
             // Ceci ne comptabilise pas les échecs de connexion pour le verrouillage du compte
             // Pour que les échecs de mot de passe déclenchent le verrouillage du compte, utilisez shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -139,6 +143,7 @@ namespace FilActualite.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.CategorieId = new SelectList(db.Categories, "Id", "Nom");
             return View();
         }
 
@@ -151,12 +156,14 @@ namespace FilActualite.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, CategorieId = model.CategorieId };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    var currentUser = UserManager.FindByName(user.UserName);
+
+                    var roleresult = UserManager.AddToRole(currentUser.Id, "Default");
                     // Pour plus d'informations sur l'activation de la confirmation de compte et de la réinitialisation de mot de passe, visitez https://go.microsoft.com/fwlink/?LinkID=320771
                     // Envoyer un message électronique avec ce lien
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -167,7 +174,7 @@ namespace FilActualite.Controllers
                 }
                 AddErrors(result);
             }
-
+            ViewBag.CategorieId = new SelectList(db.Categories, "Id", "Nom");
             // Si nous sommes arrivés là, un échec s’est produit. Réafficher le formulaire
             return View(model);
         }

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace FilActualite.Models
 {
@@ -49,9 +51,8 @@ namespace FilActualite.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Courrier électronique")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Identifiant")]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -70,6 +71,25 @@ namespace FilActualite.Models
         public string Email { get; set; }
 
         [Required]
+        [Display(Name = "Identifiant")]
+        public string UserName { get; set; }
+
+        [Required]
+        [Display(Name = "Nom")]
+        public string Nom { get; set; }
+
+        [Required]
+        [Display(Name = "Prénom")]
+        public string Prenom { get; set; }
+
+        [Display(Name = "Date de naissance")]
+        public DateTime DateNaissance { get; set; }
+
+        public Guid CategorieId { get; set; }
+        [Display(Name = "Type de catégorie")]
+        public Categorie Categorie { get; set; }
+
+        [Required]
         [StringLength(100, ErrorMessage = "La chaîne {0} doit comporter au moins {2} caractères.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Mot de passe")]
@@ -77,7 +97,7 @@ namespace FilActualite.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirmer le mot de passe ")]
-        [Compare("Password", ErrorMessage = "Le mot de passe et le mot de passe de confirmation ne correspondent pas.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Le mot de passe et le mot de passe de confirmation ne correspondent pas.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -96,7 +116,7 @@ namespace FilActualite.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirmer le mot de passe")]
-        [Compare("Password", ErrorMessage = "Le nouveau mot de passe et le mot de passe de confirmation ne correspondent pas.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Le nouveau mot de passe et le mot de passe de confirmation ne correspondent pas.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

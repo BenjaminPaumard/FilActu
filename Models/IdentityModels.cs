@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -16,6 +17,8 @@ namespace FilActualite.Models
             // Ajouter les revendications personnalisées de l’utilisateur ici
             return userIdentity;
         }
+        public Guid CategorieId { get; set; }
+        public Categorie Categorie{ get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -29,5 +32,9 @@ namespace FilActualite.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<FilActualite.Models.Categorie> Categories { get; set; }
+
+        public System.Data.Entity.DbSet<FilActualite.Models.Lien> Liens { get; set; }
     }
 }
