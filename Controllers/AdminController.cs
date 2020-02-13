@@ -21,7 +21,6 @@ namespace FilActualite.Controllers
         // POST: Admin/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nom")] Categorie categorie)
         public ActionResult Edit(int id, FormCollection collection)
         {
             try

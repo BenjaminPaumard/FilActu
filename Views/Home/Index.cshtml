@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    var articles = ViewBag.Articles;
 }
 
 <div class="jumbotron">
@@ -8,5 +9,11 @@
 </div>
 
 <div class="row">
-   
+    @foreach (var article in articles)
+    {
+        <div>
+            <h4>@article.Title</h4>
+        </div>
+        
+    }
 </div>

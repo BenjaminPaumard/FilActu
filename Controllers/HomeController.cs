@@ -10,6 +10,10 @@ namespace FilActualite.Controllers
     {
         public ActionResult Index()
         {
+            var apiController = new APIController();
+            var articles = apiController.Acceuil();
+            Console.WriteLine(articles.TotalResults);
+            ViewBag.Articles = articles;
             return View();
         }
 

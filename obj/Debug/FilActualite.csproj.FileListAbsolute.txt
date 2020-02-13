@@ -127,3 +127,5 @@ C:\Users\Benjamin P\source\repos\FilActualite\FilActualite\obj\Debug\FilActualit
 C:\Users\Benjamin P\source\repos\FilActualite\FilActualite\obj\Debug\FilActualite.csproj.GenerateResource.cache
 C:\Users\Benjamin P\source\repos\FilActualite\FilActualite\obj\Debug\FilActualite.Migrations.lenomdevotremigration.resources
 C:\Users\Benjamin P\source\repos\FilActualite\FilActualite\obj\Debug\FilActualite.csprojAssemblyReference.cache
+C:\Users\Benjamin P\source\repos\FilActualite\FilActualite\bin\NewsAPI.dll
+C:\Users\Benjamin P\source\repos\FilActualite\FilActualite\bin\NewsAPI.xml
