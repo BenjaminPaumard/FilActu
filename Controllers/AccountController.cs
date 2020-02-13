@@ -1,16 +1,16 @@
-﻿using System;
+﻿using FilActualite.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using FilActualite.Models;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 
 namespace FilActualite.Controllers
 {
@@ -90,7 +90,9 @@ namespace FilActualite.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
+
                     ModelState.AddModelError("", "Tentative de connexion non valide.");
+                    Categorie
                     return View(model);
             }
         }
@@ -144,6 +146,7 @@ namespace FilActualite.Controllers
         public ActionResult Register()
         {
             ViewBag.CategorieId = new SelectList(db.Categories, "Id", "Nom");
+
             return View();
         }
 
