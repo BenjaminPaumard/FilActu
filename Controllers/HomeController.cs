@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FilActualite.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,26 +9,18 @@ namespace FilActualite.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
-            /*var apiController = new APIController();
-            apiController.Acceuil();
-            ViewBag.Articles = articles;*/
-
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult MesNews()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
+            var user = db.Users.Where(x => x.UserName == this.User.Identity.Name).FirstOrDefault();
+            var categorie = db.Categories.Find(user.CategorieId);
+            ViewBag.cat = categorie.Nom;
+            Console.WriteLine(categorie.Nom);
             return View();
         }
     }

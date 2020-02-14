@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Net;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace FilActualite.Controllers
 {
@@ -14,25 +16,25 @@ namespace FilActualite.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            return View(db.Users.Include(u => u.Categorie).Include(u => u.UserRole).ToList());
         }
-
 
         // POST: Admin/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Guid? id)
         {
-            try
+            if (id == null)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            catch
+            var user = db.Users.Find(id);
+            if (user == null)
             {
-                return View();
+                return HttpNotFound();
             }
+            ViewBag.CategorieId = new SelectList(db.Categories, "Id", "Nom");
+            return View(user);
         }
 
 

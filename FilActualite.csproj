@@ -172,7 +172,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\APIController.cs" />
     <Compile Include="Controllers\CategorieController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -186,6 +185,14 @@
     <Compile Include="Migrations\202002131521222_le nom de votre migration.cs" />
     <Compile Include="Migrations\202002131521222_le nom de votre migration.Designer.cs">
       <DependentUpon>202002131521222_le nom de votre migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002140818056_migration.cs" />
+    <Compile Include="Migrations\202002140818056_migration.Designer.cs">
+      <DependentUpon>202002140818056_migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002141311208_ajout role.cs" />
+    <Compile Include="Migrations\202002141311208_ajout role.Designer.cs">
+      <DependentUpon>202002141311208_ajout role.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -256,10 +263,10 @@
     <Content Include="Views\Categorie\Edit.cshtml" />
     <Content Include="Views\Categorie\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Home\MesNews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\API\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -280,6 +287,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002131521222_le nom de votre migration.resx">
       <DependentUpon>202002131521222_le nom de votre migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002140818056_migration.resx">
+      <DependentUpon>202002140818056_migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002141311208_ajout role.resx">
+      <DependentUpon>202002141311208_ajout role.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

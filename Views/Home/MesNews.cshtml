@@ -1,21 +1,22 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Mes news";
 }
 
-<div class="jumbotron">
-    <h1>Fil D'Actualité</h1>
-    <p class="lead">Actualités générales</p>
-</div>
-
 <div class="row">
+    <h1 style="text-align: center">Actualités : @ViewBag.cat</h1>
+    <br />
     <table id="news"></table>
 </div>
 
 <script>
-    $(document).ready(function() {
-        var url = 'https://newsapi.org/v2/top-headlines?' +
-          'language=fr&' +
-          'apiKey=da89aa40e24f4d10a30b4582174e4fff';
+    $(document).ready(function () {
+        var date = new Date();
+        var url = 'https://newsapi.org/v2/everything?' +
+            'q=@ViewBag.cat' + 
+            '&language=fr&' +
+            'from=' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() +  
+            '&apiKey=da89aa40e24f4d10a30b4582174e4fff';
+        console.log(url);
     $.ajax({
         type: 'GET',
         url: url,
@@ -42,16 +43,19 @@
         height: auto;
         margin-left: 3%;
     }
+
     .title {
         margin-left: -30%;
         margin-right: 5%;
         display: block;
     }
+
     td {
         width: 15%;
-        padding-bottom : 1.5%;
-        padding-top : 1.5%;
+        padding-bottom: 1.5%;
+        padding-top: 1.5%;
     }
+
     tr {
         border: 1px solid gray;
     }

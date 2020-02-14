@@ -19,7 +19,8 @@ namespace FilActualite.Models
         }
         public Guid CategorieId { get; set; }
         public Categorie Categorie{ get; set; }
-    }
+        public string UserRole { get; set; }
+}
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
