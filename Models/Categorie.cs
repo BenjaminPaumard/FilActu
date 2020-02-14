@@ -13,9 +13,7 @@ namespace FilActualite.Models
         [Required]
         [Display(Name = "Nom")]
         public string Nom { get; set; }
-        public virtual List<Lien> LienCategorie { get; set; }
         public ICollection<ApplicationUser> User { get; set; }
-        public ICollection<Lien> Lien { get; set; }
     }
     
 }

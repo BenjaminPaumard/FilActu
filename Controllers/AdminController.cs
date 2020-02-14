@@ -36,6 +36,7 @@ namespace FilActualite.Controllers
         }
 
 
+
         // POST: Admin/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)

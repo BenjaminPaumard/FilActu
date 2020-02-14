@@ -7,13 +7,13 @@ namespace FilActualite.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class lenomdevotremigration : IMigrationMetadata
+    public sealed partial class Migrtion : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(lenomdevotremigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Migrtion));
         
         string IMigrationMetadata.Id
         {
-            get { return "202002121326399_le nom de votre migration"; }
+            get { return "202002131521222_le nom de votre migration"; }
         }
         
         string IMigrationMetadata.Source

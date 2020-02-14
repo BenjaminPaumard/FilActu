@@ -92,7 +92,6 @@ namespace FilActualite.Controllers
                 default:
 
                     ModelState.AddModelError("", "Tentative de connexion non valide.");
-                    Categorie
                     return View(model);
             }
         }

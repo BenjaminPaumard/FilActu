@@ -21,11 +21,15 @@ namespace FilActualite.Controllers
         // GET: API
         public ArticlesResult Acceuil()
         {
+            Console.WriteLine("test");
             var articlesResponse = this.newsApiClient.GetTopHeadlines(new TopHeadlinesRequest
             {
                 Language = Languages.FR
             });
+            Console.WriteLine("passage API");
+            Console.WriteLine(articlesResponse.TotalResults);
             return articlesResponse;
+
         }
 
         public ArticlesResult ActuByCat(Categorie categories, string type = null)

@@ -1,19 +1,44 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-    var articles = ViewBag.Articles;
 }
 
 <div class="jumbotron">
     <h1>Fil D'Actualité</h1>
-    <p class="lead">Choisi ton actu frère</p>
+    <p class="lead">Actualités générales</p>
 </div>
 
 <div class="row">
-    @foreach (var article in articles)
-    {
-        <div>
-            <h4>@article.Title</h4>
-        </div>
-        
-    }
+    
 </div>
+
+<script>
+    $(document).ready(function() {
+        var url = 'https://newsapi.org/v2/top-headlines?' +
+          'language=fr&' +
+          'apiKey=da89aa40e24f4d10a30b4582174e4fff';
+    $.ajax({
+        type: 'GET',
+        url: url,
+        success: function(data) {
+            console.log(data);
+            var tr;
+        //Append each row to html table
+        for (var i = 0; i < data.length; i++) {
+
+
+
+            tr = $('<tr/>');
+                tr.append("<td>" + data[i].Id + "</td>");
+                tr.append("<td>" + data[i].Name + "</td>");
+                $('table').append(tr);
+            }
+        },
+        failure: function(data) {
+            alert("Failure: " + data);
+        },
+        error: function(data) {
+            alert("Error: " + data);
+        }
+    });
+});
+</script>
